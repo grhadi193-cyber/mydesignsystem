@@ -878,6 +878,37 @@
       display: flex; align-items: center; gap: 6px;
     }
 
+    /* — Product Detail Page Styles — */
+    .gallery-thumb {
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+    .gallery-thumb:hover { border-color: var(--teal); }
+    .gallery-thumb.is-active { border-color: var(--navy); }
+
+    .color-swatch {
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .color-swatch:hover { transform: scale(1.1); }
+    .color-swatch.is-active { border-color: var(--navy) !important; transform: scale(1.1); }
+
+    .product-tab {
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .product-tab:hover { color: var(--navy); }
+    .product-tab.is-active { color: var(--navy); border-bottom-color: var(--navy); }
+
+    .check-icon {
+      width: 16px; height: 16px;
+      color: var(--success);
+      flex-shrink: 0;
+    }
+
+    .filled { color: #F59E0B; }
+    .empty { color: var(--border-default); }
+
   </style>
 </head>
 <body>
@@ -946,6 +977,10 @@
       <a href="#cards"      class="ds-nav-link">
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/></svg>
         کارت‌ها
+      </a>
+      <a href="#product-detail" class="ds-nav-link">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/></svg>
+        صفحه محصول
       </a>
       <a href="#modals"     class="ds-nav-link">
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/></svg>
@@ -1474,6 +1509,297 @@
             <span style="font-size:14px; color:var(--text-primary);">غیرفعال</span>
             <div class="toggle-switch is-active"></div>
             <span style="font-size:14px; color:var(--text-primary);">فعال</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════
+         SECTION: PRODUCT DETAIL PAGE
+    ════════════════════════════ -->
+    <section class="ds-section" id="product-detail">
+      <h2 class="ds-section-title">صفحه محصول — Product Detail Page</h2>
+      <p class="ds-section-desc">طراحی کامل صفحه محصول با گالری، انتخابگر رنگ و سایز، قیمت، تب‌های اطلاعاتی و نظرات کاربران.</p>
+
+      <div class="ds-subsection">
+        <div class="ds-subsection-title">Breadcrumb + Header محصول</div>
+        <div class="preview-box muted">
+          <div style="max-width:1200px;">
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb" style="display:flex; gap:8px; align-items:center; font-size:13px; color:var(--text-tertiary); margin-bottom:24px;">
+              <a href="#" style="color:var(--text-tertiary); text-decoration:none;">خانه</a>
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+              <a href="#" style="color:var(--text-tertiary); text-decoration:none;">ردیاب GPS</a>
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+              <span style="color:var(--text-primary);">ردیاب ۴G سری PRO</span>
+            </nav>
+
+            <!-- Product Header -->
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start;">
+              <!-- Gallery -->
+              <div>
+                <div class="product-gallery-main" style="background:white; border-radius:var(--radius-2xl); padding:24px; box-shadow:var(--shadow-lg); margin-bottom:16px; aspect-ratio:1; display:flex; align-items:center; justify-content:center;">
+                  <svg width="200" height="200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="0.5"><rect x="3" y="3" width="18" height="18" rx="4" fill="#F0EDE6"/><path d="M12 8v8m-4-4h8" stroke="#1A56DB" stroke-width="1.5"/></svg>
+                </div>
+                <div style="display:flex; gap:12px;">
+                  <button class="gallery-thumb is-active" style="flex:1; aspect-ratio:1; border-radius:var(--radius-lg); border:2px solid var(--navy); background:white; display:flex; align-items:center; justify-content:center;">
+                    <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
+                  </button>
+                  <button class="gallery-thumb" style="flex:1; aspect-ratio:1; border-radius:var(--radius-lg); border:2px solid transparent; background:white; display:flex; align-items:center; justify-content:center;">
+                    <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="9"/></svg>
+                  </button>
+                  <button class="gallery-thumb" style="flex:1; aspect-ratio:1; border-radius:var(--radius-lg); border:2px solid transparent; background:white; display:flex; align-items:center; justify-content:center;">
+                    <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path d="M3 3h18v18H3z"/></svg>
+                  </button>
+                  <button class="gallery-thumb" style="flex:1; aspect-ratio:1; border-radius:var(--radius-lg); border:2px solid transparent; background:white; display:flex; align-items:center; justify-content:center; position:relative;">
+                    <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    <span style="position:absolute; bottom:4px; right:4px; font-size:10px; background:var(--navy); color:white; padding:2px 6px; border-radius:4px;">+۵</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Product Info -->
+              <div>
+                <div style="display:flex; gap:8px; margin-bottom:16px;">
+                  <span class="badge badge-success">موجود در انبار</span>
+                  <span class="badge badge-new">جدید</span>
+                </div>
+                <h1 style="font-size:28px; font-weight:700; color:var(--text-primary); margin-bottom:12px;">ردیاب ۴G سری PRO با نقشه آنلاین و باتری پشتیبان</h1>
+                
+                <div class="product-rating-large" style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
+                  <div style="display:flex; gap:4px;">
+                    <svg width="20" height="20" class="filled" viewBox="0 0 24 24"><path d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"/></svg>
+                    <svg width="20" height="20" class="filled" viewBox="0 0 24 24"><path d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"/></svg>
+                    <svg width="20" height="20" class="filled" viewBox="0 0 24 24"><path d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"/></svg>
+                    <svg width="20" height="20" class="filled" viewBox="0 0 24 24"><path d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"/></svg>
+                    <svg width="20" height="20" class="empty" viewBox="0 0 24 24"><path d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"/></svg>
+                  </div>
+                  <span style="font-size:14px; color:var(--text-secondary);">۴.۲ از ۵ (۱۲۸ نظر)</span>
+                  <a href="#reviews" style="font-size:14px; color:var(--navy); text-decoration:none;">مشاهده نظرات</a>
+                </div>
+
+                <div class="product-price-block" style="background:linear-gradient(135deg, #F0EDE6 0%, #E5E1D8 100%); padding:24px; border-radius:var(--radius-xl); margin-bottom:24px;">
+                  <div style="display:flex; align-items:center; gap:16px; margin-bottom:12px;">
+                    <span style="font-size:32px; font-weight:700; color:var(--navy);">۲٬۸۰۰٬۰۰۰ تومان</span>
+                    <span style="font-size:18px; color:var(--text-tertiary); text-decoration:line-through;">۳٬۳۰۰٬۰۰۰</span>
+                    <span class="badge badge-discount" style="font-size:14px; padding:4px 12px;">۱۵٪ تخفیف</span>
+                  </div>
+                  <div style="font-size:13px; color:var(--success); display:flex; align-items:center; gap:6px;">
+                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/></svg>
+                    صرفه‌جویی: ۵۰۰٬۰۰۰ تومان
+                  </div>
+                </div>
+
+                <!-- Color Selector -->
+                <div style="margin-bottom:20px;">
+                  <div style="font-size:14px; font-weight:600; color:var(--text-primary); margin-bottom:10px;">رنگ: <span style="color:var(--text-tertiary); font-weight:400;">مشکی</span></div>
+                  <div style="display:flex; gap:10px;">
+                    <button class="color-swatch is-active" style="width:40px; height:40px; border-radius:50%; background:#1C1C2E; border:3px solid var(--navy);"></button>
+                    <button class="color-swatch" style="width:40px; height:40px; border-radius:50%; background:#4A4A6A; border:3px solid transparent;"></button>
+                    <button class="color-swatch" style="width:40px; height:40px; border-radius:50%; background:#0891B2; border:3px solid transparent;"></button>
+                  </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; gap:12px; margin-bottom:24px;">
+                  <button class="btn btn-lg btn-solid-navy" style="flex:1;">افزودن به سبد خرید</button>
+                  <button class="btn btn-lg btn-outline" style="width:56px; display:flex; align-items:center; justify-content:center;">
+                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12.63 9 12.63s9-5.455 9-12.63z"/></svg>
+                  </button>
+                  <button class="btn btn-lg btn-outline" style="width:56px; display:flex; align-items:center; justify-content:center;">
+                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z"/></svg>
+                  </button>
+                </div>
+
+                <!-- Features List -->
+                <div style="border-top:1px solid var(--border-default); padding-top:20px;">
+                  <div style="font-size:14px; font-weight:600; color:var(--text-primary); margin-bottom:12px;">ویژگی‌های کلیدی</div>
+                  <ul style="list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:13px; color:var(--text-secondary);">
+                    <li style="display:flex; align-items:center; gap:8px;">
+                      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="check-icon"><path d="M4.5 12.75l6 6 9-13.5"/></svg>
+                      شبکه ۴G LTE
+                    </li>
+                    <li style="display:flex; align-items:center; gap:8px;">
+                      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="check-icon"><path d="M4.5 12.75l6 6 9-13.5"/></svg>
+                      نقشه آنلاین زنده
+                    </li>
+                    <li style="display:flex; align-items:center; gap:8px;">
+                      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="check-icon"><path d="M4.5 12.75l6 6 9-13.5"/></svg>
+                      باتری پشتیبان ۴۸ ساعت
+                    </li>
+                    <li style="display:flex; align-items:center; gap:8px;">
+                      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="check-icon"><path d="M4.5 12.75l6 6 9-13.5"/></svg>
+                      ضد آب IP67
+                    </li>
+                    <li style="display:flex; align-items:center; gap:8px;">
+                      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="check-icon"><path d="M4.5 12.75l6 6 9-13.5"/></svg>
+                      گارانتی ۱ ساله
+                    </li>
+                    <li style="display:flex; align-items:center; gap:8px;">
+                      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="check-icon"><path d="M4.5 12.75l6 6 9-13.5"/></svg>
+                      نصب رایگان
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-subsection">
+        <div class="ds-subsection-title">تب‌های اطلاعاتی</div>
+        <div class="preview-box muted">
+          <div style="max-width:1200px;">
+            <div class="product-tabs" style="border-bottom:2px solid var(--border-default); margin-bottom:24px;">
+              <button class="product-tab is-active" style="padding:12px 24px; background:none; border:none; font-size:14px; font-weight:600; color:var(--navy); border-bottom:2px solid var(--navy); margin-bottom:-2px;">بررسی اجمالی</button>
+              <button class="product-tab" style="padding:12px 24px; background:none; border:none; font-size:14px; font-weight:500; color:var(--text-secondary);">مشخصات فنی</button>
+              <button class="product-tab" style="padding:12px 24px; background:none; border:none; font-size:14px; font-weight:500; color:var(--text-secondary);">نظرات کاربران (۱۲۸)</button>
+              <button class="product-tab" style="padding:12px 24px; background:none; border:none; font-size:14px; font-weight:500; color:var(--text-secondary);">پشتیبانی</button>
+            </div>
+            
+            <div style="background:white; padding:32px; border-radius:var(--radius-xl); box-shadow:var(--shadow-md);">
+              <h3 style="font-size:18px; font-weight:700; color:var(--text-primary); margin-bottom:16px;">بررسی اجمالی ردیاب ۴G سری PRO</h3>
+              <p style="font-size:14px; line-height:2; color:var(--text-secondary); margin-bottom:20px;">
+                ردیاب ۴G سری PRO پیشرفته‌ترین دستگاه ردیابی خودرو با قابلیت اتصال به شبکه ۴G LTE و ارائه موقعیت‌یابی دقیق و لحظه‌ای است. 
+                این دستگاه با بهره‌گیری از جدیدترین تکنولوژی‌های روز دنیا، امنیت خودروی شما را به طور کامل تضمین می‌کند.
+              </p>
+              <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+                <div style="text-align:center; padding:20px; background:var(--bg-secondary); border-radius:var(--radius-lg);">
+                  <div style="font-size:28px; font-weight:700; color:var(--navy); margin-bottom:4px;">۲ متر</div>
+                  <div style="font-size:12px; color:var(--text-tertiary);">دقت موقعیت‌یابی</div>
+                </div>
+                <div style="text-align:center; padding:20px; background:var(--bg-secondary); border-radius:var(--radius-lg);">
+                  <div style="font-size:28px; font-weight:700; color:var(--teal); margin-bottom:4px;">۴۸ ساعت</div>
+                  <div style="font-size:12px; color:var(--text-tertiary);">باتری پشتیبان</div>
+                </div>
+                <div style="text-align:center; padding:20px; background:var(--bg-secondary); border-radius:var(--radius-lg);">
+                  <div style="font-size:28px; font-weight:700; color:var(--amber); margin-bottom:4px;">IP67</div>
+                  <div style="font-size:12px; color:var(--text-tertiary);">مقاومت در برابر آب</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-subsection">
+        <div class="ds-subsection-title">بخش نظرات کاربران</div>
+        <div class="preview-box">
+          <div style="max-width:1200px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+              <h3 style="font-size:20px; font-weight:700; color:var(--text-primary);">نظرات کاربران</h3>
+              <button class="btn btn-md btn-outline">ثبت نظر جدید</button>
+            </div>
+            
+            <div style="display:grid; gap:20px;">
+              <!-- Review Item -->
+              <div style="background:white; padding:24px; border-radius:var(--radius-xl); box-shadow:var(--shadow-sm);">
+                <div style="display:flex; justify-content:space-between; margin-bottom:16px;">
+                  <div style="display:flex; align-items:center; gap:12px;">
+                    <div style="width:48px; height:48px; border-radius:50%; background:var(--gradient-navy); display:flex; align-items:center; justify-content:center; color:white; font-weight:700;">م</div>
+                    <div>
+                      <div style="font-weight:600; color:var(--text-primary);">محمد رضایی</div>
+                      <div style="font-size:12px; color:var(--text-tertiary);">تهران، شهرک غرب — ۱۵ آبان ۱۴۰۳</div>
+                    </div>
+                  </div>
+                  <div style="display:flex; gap:4px;">
+                    <svg width="18" height="18" class="filled" viewBox="0 0 24 24"><path d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"/></svg>
+                    <svg width="18" height="18" class="filled" viewBox="0 0 24 24"><path d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"/></svg>
+                    <svg width="18" height="18" class="filled" viewBox="0 0 24 24"><path d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"/></svg>
+                    <svg width="18" height="18" class="filled" viewBox="0 0 24 24"><path d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"/></svg>
+                    <svg width="18" height="18" class="empty" viewBox="0 0 24 24"><path d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"/></svg>
+                  </div>
+                </div>
+                <p style="font-size:14px; line-height:1.8; color:var(--text-secondary);">
+                  ردیاب GPS آتی فرزام خیلی خوب کار می‌کنه. چند بار ماشینمو دزدیدن و تونستم با کمک این دستگاه پیداش کنم. 
+                  نصبشم آسون بود و تیم پشتیبانی خیلی خوب راهنمایی کردن. توصیه می‌کنم حتماً بخرید.
+                </p>
+                <div style="margin-top:16px; display:flex; gap:12px;">
+                  <button style="background:none; border:none; font-size:12px; color:var(--text-tertiary); display:flex; align-items:center; gap:6px; cursor:pointer;">
+                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.247-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.396C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z"/></svg>
+                    مفید بود (۱۲)
+                  </button>
+                  <button style="background:none; border:none; font-size:12px; color:var(--text-tertiary); display:flex; align-items:center; gap:6px; cursor:pointer;">
+                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M7.5 12h9m-9 3.75h6.375a2.25 2.25 0 002.188-1.698l.9-3.6a2.25 2.25 0 00-2.188-2.802H7.5m9 0V6.75a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25h.375"/></svg>
+                    گزارش
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-subsection">
+        <div class="ds-subsection-title">محصولات مشابه</div>
+        <div class="preview-box muted">
+          <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:24px; max-width:1200px;">
+            <div class="product-card">
+              <div class="card-image">
+                <span class="card-badge badge-discount" style="left:12px;">۱۰٪</span>
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
+              </div>
+              <div class="card-content">
+                <div class="card-category">ردیاب GPS</div>
+                <div class="card-title">ردیاب ۴G سری Lite اقتصادی</div>
+                <div class="card-price">
+                  <span class="card-price-current">۱٬۹۵۰٬۰۰۰ ت</span>
+                  <span class="card-price-old">۲٬۲۰۰٬۰۰۰</span>
+                </div>
+              </div>
+              <div class="card-action">
+                <button class="btn btn-md btn-outline">مشاهده</button>
+              </div>
+            </div>
+            <div class="product-card">
+              <div class="card-image">
+                <span class="card-badge badge-bestseller" style="right:12px;">پرفروش</span>
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
+              </div>
+              <div class="card-content">
+                <div class="card-category">ردیاب GPS</div>
+                <div class="card-title">ردیاب ۴G سری Ultra حرفه‌ای</div>
+                <div class="card-price">
+                  <span class="card-price-current">۳٬۶۰۰٬۰۰۰ ت</span>
+                </div>
+              </div>
+              <div class="card-action">
+                <button class="btn btn-md btn-outline">مشاهده</button>
+              </div>
+            </div>
+            <div class="product-card">
+              <div class="card-image">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
+              </div>
+              <div class="card-content">
+                <div class="card-category">ردیاب GPS</div>
+                <div class="card-title">ردیاب ۲G کلاسیک</div>
+                <div class="card-price">
+                  <span class="card-price-current">۱٬۲۰۰٬۰۰۰ ت</span>
+                </div>
+              </div>
+              <div class="card-action">
+                <button class="btn btn-md btn-outline">مشاهده</button>
+              </div>
+            </div>
+            <div class="product-card">
+              <div class="card-image">
+                <span class="card-badge badge-new" style="right:12px;">جدید</span>
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
+              </div>
+              <div class="card-content">
+                <div class="card-category">ردیاب GPS</div>
+                <div class="card-title">ردیاب 5G نسل آینده</div>
+                <div class="card-price">
+                  <span class="card-price-current">۴٬۸۰۰٬۰۰۰ ت</span>
+                </div>
+              </div>
+              <div class="card-action">
+                <button class="btn btn-md btn-outline">مشاهده</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
